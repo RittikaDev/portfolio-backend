@@ -19,7 +19,19 @@ const projectValidationSchema = z.object({
   frontend: frontBackProjectSchema, // Frontend validation
   backend: frontBackProjectSchema, // Backend validation
 });
+const updateProjectValidationSchema = z.object({
+  title: z.string().min(1).optional(), // Non-empty string
+  slug: z.string().min(1).optional(), // Non-empty string
+  brief: z.string().min(1).optional(), // Non-empty string
+  description: z.array(z.string()).default([]).optional(),
+  cover: z.string().min(1).optional(), // Non-empty string
+  images: z.array(z.string()).default([]).optional(),
+  type: z.string().min(1).optional(), // Non-empty string
+  frontend: frontBackProjectSchema.optional(), // Frontend validation
+  backend: frontBackProjectSchema.optional(), // Backend validation
+});
 
 export const ProjectValidationSchema = {
   projectValidationSchema,
+  updateProjectValidationSchema,
 };

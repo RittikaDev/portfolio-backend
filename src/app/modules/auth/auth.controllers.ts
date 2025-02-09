@@ -29,6 +29,8 @@ const signInUser = catchAsync(async (req, res) => {
   const result = await AuthService.userSignIntoDB(req.body);
   const { refreshToken, accessToken } = result;
 
+  console.log(result);
+
   res.cookie('refreshToken', refreshToken, {
     secure: config.NODE_ENV === 'production',
     httpOnly: true,
@@ -69,19 +71,6 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 
-// ADMIN PARTS
-const blockAUser = catchAsync(async (req, res) => {
-  // console.log(req);
-  const { id } = req.params;
-  await AuthService.blockUserFromDB(id);
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'User blocked successfully',
-  });
-});
-
 export const AuthControllers = {
   createUser,
   signInUser,
@@ -89,6 +78,4 @@ export const AuthControllers = {
   getCurrentUser,
 
   refreshToken,
-
-  blockAUser,
 };

@@ -23,20 +23,10 @@ const UserSchema = new Schema<TUser>(
       require: [true, 'password must be required'],
       select: false,
     },
-    passwordChangedAt: {
-      type: Date,
-    },
-    phone: { type: String, default: 'N/A' },
-    address: { type: String, default: 'N/A' },
-    city: { type: String, default: 'N/A' },
     role: {
       type: String,
       enum: ['admin', 'user'],
       default: 'user',
-    },
-    isBlocked: {
-      type: Boolean,
-      default: false,
     },
   },
   {

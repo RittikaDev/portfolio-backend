@@ -28,6 +28,5 @@ router.post(
 );
 
 // ADMIN
-router.patch('/:id/block', auth(USER_ROLE.admin), AuthControllers.blockAUser);
 
 export const AuthRoutes = router;

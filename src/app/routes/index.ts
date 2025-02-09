@@ -4,6 +4,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { UserRoute } from '../modules/user/user.route';
 import { ProjectRoute } from '../modules/projects/projects.route';
 import { BlogRoute } from '../modules/blog/blog.route';
+import { ContactRoute } from '../modules/contact/contact.route';
 
 const router = Router();
 
@@ -24,10 +25,10 @@ const moduleRoutes = [
     path: '/projects',
     route: ProjectRoute,
   },
-  // {
-  //   path: '/contact',
-  //   route: OrderRoute,
-  // },
+  {
+    path: '/contact',
+    route: ContactRoute,
+  },
 ];
 
 moduleRoutes.forEach((route) => {

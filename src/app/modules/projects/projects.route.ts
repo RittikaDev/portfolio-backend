@@ -18,5 +18,17 @@ router.post(
 );
 
 router.get('/:projectId', ProjectController.getSingleProject);
+router.put(
+  '/:projectId',
+  // auth(USER_ROLE.admin),
+  validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
+  ProjectController.updateAProject,
+);
+
+router.delete(
+  '/:projectId',
+  validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
+  ProjectController.deleteAProject,
+);
 
 export const ProjectRoute = router;

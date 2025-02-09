@@ -49,8 +49,46 @@ const getSingleProject = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const updateAProject = catchAsync(async (req: Request, res: Response) => {
+  const { projectId } = req.params;
+  const updateData = req.body;
+
+  // AT LEAST HAS TO BE PROVIDED
+  if (Object.keys(updateData).length === 0) {
+    sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'At least one field must be provided for update',
+      data: [],
+    });
+    return;
+  }
+
+  const result = await ProjectService.updateAProject(projectId, updateData);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Project updated successfully',
+    data: result,
+  });
+});
+
+const deleteAProject = catchAsync(async (req: Request, res: Response) => {
+  const { projectId } = req.params;
+  const result = await ProjectService.deleteAProjectFromDB(projectId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Project deleted successfully',
+    data: result,
+  });
+});
+
 export const ProjectController = {
   getAllProjects,
   createAProject,
   getSingleProject,
+  updateAProject,
+  deleteAProject,
 };
