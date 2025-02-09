@@ -11,7 +11,14 @@ const createProjectIntoDB = async (project: IProject) => {
   return result;
 };
 
+const getSingleProjectFromDB = async (id: string) => {
+  const result = await ProjectModel.findOne({ _id: id }); // SEARCHING BY THE MONGODB _ID
+  // console.log(result);
+  return result;
+};
+
 export const ProjectService = {
   getAllProjectsFromDB,
   createProjectIntoDB,
+  getSingleProjectFromDB,
 };

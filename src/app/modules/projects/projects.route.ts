@@ -17,4 +17,6 @@ router.post(
   ProjectController.createAProject,
 );
 
+router.get('/:projectId', ProjectController.getSingleProject);
+
 export const ProjectRoute = router;

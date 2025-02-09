@@ -29,7 +29,28 @@ const createAProject = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleProject = catchAsync(async (req: Request, res: Response) => {
+  const { blogId } = req.params;
+  const result = await ProjectService.getSingleProjectFromDB(blogId);
+
+  if (result != null) {
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Car retrieved successfully',
+      data: result,
+    });
+  } else
+    sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: 'No Data Found',
+      data: [],
+    });
+});
+
 export const ProjectController = {
   getAllProjects,
   createAProject,
+  getSingleProject,
 };
