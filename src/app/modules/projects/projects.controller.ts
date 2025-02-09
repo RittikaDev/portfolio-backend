@@ -30,8 +30,8 @@ const createAProject = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getSingleProject = catchAsync(async (req: Request, res: Response) => {
-  const { blogId } = req.params;
-  const result = await ProjectService.getSingleProjectFromDB(blogId);
+  const { projectId } = req.params;
+  const result = await ProjectService.getSingleProjectFromDB(projectId);
 
   if (result != null) {
     sendResponse(res, {
