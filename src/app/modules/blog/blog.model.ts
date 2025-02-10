@@ -6,7 +6,7 @@ const contentSchema = new Schema<IBlogContent>({
   type: {
     type: String,
     enum: ['heading1', 'heading2', 'heading3', 'paragraph', 'list', 'code'],
-    required: true,
+    required: false,
   },
   text: {
     type: String,
@@ -35,11 +35,11 @@ const blogSchema = new Schema<IBlog>(
     },
     cover: {
       type: String,
-      required: true,
+      required: false,
     },
     slug: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
     publishedDate: {
@@ -52,7 +52,7 @@ const blogSchema = new Schema<IBlog>(
     },
     content: {
       type: [contentSchema],
-      required: true,
+      required: false,
     },
   },
   {

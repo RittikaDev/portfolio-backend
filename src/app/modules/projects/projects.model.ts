@@ -38,7 +38,7 @@ const projectSchema = new Schema<IProject>({
   },
   slug: {
     type: String,
-    required: true,
+    required: false,
   },
   brief: {
     type: String,
@@ -48,14 +48,14 @@ const projectSchema = new Schema<IProject>({
     type: [String],
     required: true,
   },
-  cover: { type: String, required: [true, 'Image URL is required'] },
+  cover: { type: String, required: false },
   images: {
     type: [String],
-    required: true,
+    required: false,
   },
   type: {
     type: String,
-    required: true,
+    required: false,
   },
   frontend: {
     type: frontendSchema,

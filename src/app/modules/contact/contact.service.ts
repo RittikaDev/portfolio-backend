@@ -6,6 +6,12 @@ const createContactMessage = async (contact: IContact) => {
   return result;
 };
 
+const getAllMessagesFromDB = async () => {
+  const result = await ContactModel.find().sort({ createdAt: -1 });
+  return result;
+};
+
 export const ContactService = {
   createContactMessage,
+  getAllMessagesFromDB,
 };

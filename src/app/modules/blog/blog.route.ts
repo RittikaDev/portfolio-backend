@@ -17,4 +17,17 @@ router.post(
 
 router.get('/:blogId', BlogController.getSingleBlog);
 
+router.put(
+  '/:blogId',
+  // auth(USER_ROLE.admin),
+  // validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
+  BlogController.updateABlog,
+);
+
+router.delete(
+  '/:blogId',
+  // validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
+  BlogController.deleteABlog,
+);
+
 export const BlogRoute = router;
