@@ -22,7 +22,7 @@ router.patch(
   UserController.updateProfile,
 );
 
-router.get('/all-users', auth(USER_ROLE.admin), UserController.getAllUsers);
+// router.get('/all-users', auth(USER_ROLE.admin), UserController.getAllUsers);
 
 router.patch(
   '/:id/manage-status',
