@@ -1,25 +1,22 @@
-## Car Store B4A2V3
+## Portfolio Backend
 
-A Node-Express application to manage a car store and process customer orders. The application supports features such as adding and updating car details, managing orders, and calculating revenue using MongoDB aggregation pipelines.
+A Node-Express application to manage the portfolio. The application has features such as CRUD operation for Project and Blog management.
 
 ## Features
 
-### Car Management:
+### Project Management:
 
-- Add new cars with details such as brand, model, year, price, and quantity.
-- Update car details including price, quantity, and availability status.
-- Automatically update car availability (inStock) based on inventory quantity.
+- Add new project with details such as title, slug, brief, description, images
+- Update, read and delete projects
 
-### Order Management:
+### Blog Management:
 
-- Place orders for cars with validation of inventory stock.
-- Calculate the total price for orders dynamically.
-- Handle scenarios like insufficient stock with user-friendly error messages.
+- Add new blog with details such as title, brief, cover, slug, publishedDate, readTime
+- Update, read and delete blogs
 
-### Revenue Calculation:
+### Message Read:
 
-- Compute total revenue from orders using MongoDB aggregation pipelines.
-- Ensure accurate revenue tracking by validating stock availability during order placement.
+- Reads and send messages
 
 ## Getting Started
 
@@ -36,8 +33,8 @@ Follow the instructions below to set up the project locally.
 Clone the repository:
 
 ```bash
-git clone https://github.com/RittikaDev/car-store-B4A2V3.git
-cd car-store-B4A2V3
+git clone https://github.com/RittikaDev/portfolio-backend
+cd portfolio-backend
 ```
 
 Install dependencies:
@@ -73,28 +70,100 @@ API Documentation
 
 ### API Endpoints
 
-#### Car Management
+#### Project Management
 
-- Create a Car:
-  - POST /api/cars
-  - Request Body: { "brand": "BMW", "model": "X5", "year": 2023, "price": 50000, "quantity": 10, "category": "SUV", "description": "Luxury SUV" }
-- Get All Cars:
-  - GET /api/cars?searchTerm=
-- Get Single Car
-  - GET /api/cars/:carId
-- Update a Car:
-  - PUT /api/cars/:carId
-  - Request Body: { "price": 55000, "quantity": 5 }
-- Delete a Car
-  - DELETE /api/cars/:carId
+- Create a Project:
+  - POST /api/projects
+  - Request Body: {
+    "title": "title",
+    "slug": "slug",
+    "brief": "brief",
+    "description": [
+    "",
+    "",
+    ""
+    ],
+    "cover": "",
+    "images": [
+    ""
+    ],
+    "type": "Official",
+    "frontend": {
+    "technologies": [
+    "Angular",
+    "Typescript",
+    "Angular Material",
+    "Bootstrap"
+    ],
+    "deploymentLink": "",
+    "github": ""
+    },
+    "backend": {
+    "technologies": [
+    ".Net Core",
+    "SQL",
+    "Entity Framework"
+    ],
+    "deploymentLink": "",
+    "github": ""
+    }
+    }
+- Get All Projects:
+  - GET /api/projects/featured
+- Get Single Project
+  - GET /api/projects/:projectId
+- Update a Project:
+  - PUT /api/projects/:projectId
+  - Request Body: {
+    "title": "title",
+    "slug": "slug",
+    "brief": "brief",
+    "description": [
+    ],
+    "cover": "",
+    "images": [
+    "",
+    ],
+    "type": "Personal",
+    "frontend": {
+    "technologies": [
+    "",
+    ],
+    "deploymentLink": "",
+    "github": ""
+    },
+    "backend": {
+    "technologies": [
+    "NodeJs",
+    "ExpressJs",
+    "MongoDB", "ShurjoPay"
+    ],
+    "deploymentLink": "",
+    "github": ""
+    }
+    }
+- Delete a Project
+  - DELETE /api/projects/:carId
 
-#### Order Management
+#### Blog Management
 
-- Create an Order:
-  - POST /api/orders
-  - Request Body: { "email": "customer@example.com", "car": "<carId>", "quantity": 1, "totalPrice": 50000 }
-- Get Total Revenue
-  - GET /api/orders/revenue
+- Create an Blog:
+  - POST /api/blog
+- Get All Blog:
+  - GET /api/blog
+- Get Single Blog
+  - GET /api/blog/:blogId
+- Update a Blog:
+  - PUT /api/blog/:blogId
+- Delete a Blog
+  - DELETE /api/blog/:blogId
+
+#### Contact Management
+
+- Create an Blog:
+  - POST /api/contact
+- Get All Blog:
+  - GET /api/contact
 
 ## Project Structure
 
@@ -103,21 +172,29 @@ car-store-B4A2V3/
 ├── src/
 │   ├── app/
 │   │   ├── modules/
-│   │   │   ├── car/
-│   │   │   │   ├── car.controller.ts
-│   │   │   │   ├── car.model.ts
-│   │   │   │   ├── car.route.ts
-│   │   │   │   ├── car.service.ts
-│   │   │   │   ├── car.interface.ts
-│   │   │   │   └── car.validation.ts
+│   │   │   ├── projects/
+│   │   │   │   ├── projects.controller.ts
+│   │   │   │   ├── projects.model.ts
+│   │   │   │   ├── projects.route.ts
+│   │   │   │   ├── projects.service.ts
+│   │   │   │   ├── projects.interface.ts
+│   │   │   │   └── projects.validation.ts
 │   │   │   │
-│   │   │   ├── order/
-│   │   │   │   ├── order.controllers.ts
-│   │   │   │   ├── order.model.ts
-│   │   │   │   ├── order.route.ts
-│   │   │   │   ├── order.service.ts
-│   │   │   │   ├── order.interface.ts
-│   │   │   │   └── order.validation.ts
+│   │   │   ├── blog/
+│   │   │   │   ├── blog.controllers.ts
+│   │   │   │   ├── blog.model.ts
+│   │   │   │   ├── blog.route.ts
+│   │   │   │   ├── blog.service.ts
+│   │   │   │   ├── blog.interface.ts
+│   │   │   │   └── blog.validation.ts
+│   │   │   │
+│   │   │   ├── contact/
+│   │   │   │   ├── contact.controllers.ts
+│   │   │   │   ├── contact.model.ts
+│   │   │   │   ├── contact.route.ts
+│   │   │   │   ├── contact.service.ts
+│   │   │   │   ├── contact.interface.ts
+│   │   │   │   └── contact.validation.ts
 │   │   ├─── config/
 │   │       └── index.ts
 │   ├── app.ts
@@ -128,7 +205,3 @@ car-store-B4A2V3/
 ├── tsconfig.json
 └── README.md
 ```
-
-### Known Issues
-- Response Structure Update:
-During the initial submission for recheck, a minor inconsistency was still present in the API response structure that I later realized. This issue has now been fixed and redeployed.
