@@ -23,24 +23,24 @@ const contentSchema = new Schema<IBlogContent>({
 });
 
 // Define the main blog schema
-const blogSchema = new Schema<IBlog>(
+const BlogSchema = new Schema(
   {
     title: {
       type: String,
       required: true,
+      trim: true,
     },
     brief: {
       type: String,
       required: true,
+      trim: true,
+    },
+    content: {
+      type: Object, // or type: mongoose.Schema.Types.Mixed
+      required: true, // This will be your TipTap JSON or HTML
     },
     cover: {
-      type: String,
-      required: false,
-    },
-    slug: {
-      type: String,
-      required: false,
-      unique: true,
+      type: String, // URL
     },
     publishedDate: {
       type: String,
@@ -50,15 +50,9 @@ const blogSchema = new Schema<IBlog>(
       type: String,
       required: true,
     },
-    content: {
-      type: [contentSchema],
-      required: false,
-    },
   },
-  {
-    timestamps: true, // Automatically add createdAt and updatedAt
-  },
+  { timestamps: true },
 );
 
 // Create and export the model
-export const BlogModel = model('Blog', blogSchema);
+export const BlogModel = model('Blog', BlogSchema);

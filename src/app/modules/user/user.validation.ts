@@ -3,7 +3,6 @@ import { z } from 'zod';
 // DEFINING THE TUser SCHEMA WITH CUSTOM ERROR MESSAGE
 const CreateUserValidationSchema = z.object({
   body: z.object({
-    name: z.string().min(1, { message: 'Name is required' }),
     email: z
       .string()
       .email({ message: 'Invalid email address' })
@@ -12,17 +11,11 @@ const CreateUserValidationSchema = z.object({
       .string()
       .min(6, { message: 'Password must be at least 6 characters long' })
       .nonempty({ message: 'Password is required' }),
-    phone: z.string().optional(),
-    address: z.string().optional(),
-    city: z.string().optional(),
-    role: z.enum(['admin', 'user']).optional().default('user'),
-    isBlocked: z.boolean().optional().default(false),
   }),
 });
 
 const UpdateUserValidationSchema = z.object({
   body: z.object({
-    name: z.string().min(1, { message: 'Name is required' }).optional(),
     email: z
       .string()
       .email({ message: 'Invalid email address' })
@@ -33,11 +26,6 @@ const UpdateUserValidationSchema = z.object({
       .min(6, { message: 'Password must be at least 6 characters long' })
       .nonempty({ message: 'Password is required' })
       .optional(),
-    phone: z.string().optional().optional(),
-    address: z.string().optional().optional(),
-    city: z.string().optional().optional(),
-    role: z.enum(['admin', 'user']).optional().default('user'),
-    isBlocked: z.boolean().optional().default(false).optional(),
   }),
 });
 

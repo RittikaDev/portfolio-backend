@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://rittikadev.vercel.app',
+    origin: ['https://rittikadev.vercel.app', 'http://localhost:3000'],
     credentials: true,
   }),
 );
