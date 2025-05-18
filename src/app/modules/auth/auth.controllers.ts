@@ -3,6 +3,7 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AuthService } from './auth.services';
 import config from '../../config';
+import { Request, Response } from 'express';
 
 const createUser = catchAsync(async (req, res) => {
   const userData = req.body;
@@ -71,6 +72,22 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 
+const logoutUser = catchAsync(async (req: Request, res: Response) => {
+  res.clearCookie('refreshToken', {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'none',
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+  });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Logged out successfully!',
+    data: null,
+  });
+});
+
 export const AuthControllers = {
   createUser,
   signInUser,
@@ -78,4 +95,5 @@ export const AuthControllers = {
   getCurrentUser,
 
   refreshToken,
+  logoutUser,
 };
