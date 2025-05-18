@@ -12,7 +12,7 @@ const router = express.Router();
 router.get('/featured', ProjectController.getAllProjects);
 router.post(
   '/',
-  //   auth(USER_ROLE.admin),
+  auth(USER_ROLE.admin),
   // validateRequest(ProjectValidationSchema.projectValidationSchema),
   ProjectController.createAProject,
 );
@@ -20,13 +20,14 @@ router.post(
 router.get('/:projectId', ProjectController.getSingleProject);
 router.put(
   '/:projectId',
-  // auth(USER_ROLE.admin),
+  auth(USER_ROLE.admin),
   validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
   ProjectController.updateAProject,
 );
 
 router.delete(
   '/:projectId',
+  auth(USER_ROLE.admin),
   validateRequest(ProjectValidationSchema.updateProjectValidationSchema),
   ProjectController.deleteAProject,
 );
