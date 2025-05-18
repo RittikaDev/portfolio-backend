@@ -19,7 +19,11 @@ router.post(
   AuthControllers.signInUser,
 );
 
-router.post('/current-user', AuthControllers.getCurrentUser);
+router.get(
+  '/current-user',
+  auth(USER_ROLE.admin),
+  AuthControllers.getCurrentUser,
+);
 
 router.post(
   '/refresh-token',

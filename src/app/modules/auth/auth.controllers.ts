@@ -50,8 +50,8 @@ const signInUser = catchAsync(async (req, res) => {
 });
 
 const getCurrentUser = catchAsync(async (req, res) => {
-  console.log(req.body);
-  const user = await AuthService.getCurrentUser(req.body);
+  const userEmail = req.user?.userEmail;
+  const user = await AuthService.getCurrentUser({ email: userEmail });
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
