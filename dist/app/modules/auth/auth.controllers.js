@@ -39,10 +39,11 @@ const signInUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     const { refreshToken, accessToken } = result;
     console.log(result);
     res.cookie('refreshToken', refreshToken, {
-        secure: true,
         httpOnly: true,
-        sameSite: 'none',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 1000 * 60 * 60 * 24 * 365,
+        path: '/',
     });
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_codes_1.default.OK,

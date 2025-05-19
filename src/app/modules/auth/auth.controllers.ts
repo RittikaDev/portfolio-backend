@@ -33,10 +33,11 @@ const signInUser = catchAsync(async (req, res) => {
   console.log(result);
 
   res.cookie('refreshToken', refreshToken, {
-    secure: true,
     httpOnly: true,
-    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 1000 * 60 * 60 * 24 * 365,
+    path: '/',
   });
 
   sendResponse(res, {
