@@ -23,23 +23,23 @@ const contentSchema = new mongoose_1.Schema({
     },
 });
 // Define the main blog schema
-const blogSchema = new mongoose_1.Schema({
+const BlogSchema = new mongoose_1.Schema({
     title: {
         type: String,
         required: true,
+        trim: true,
     },
     brief: {
         type: String,
         required: true,
+        trim: true,
+    },
+    content: {
+        type: Object, // or type: mongoose.Schema.Types.Mixed
+        required: true, // This will be your TipTap JSON or HTML
     },
     cover: {
-        type: String,
-        required: false,
-    },
-    slug: {
-        type: String,
-        required: false,
-        unique: true,
+        type: String, // URL
     },
     publishedDate: {
         type: String,
@@ -49,12 +49,6 @@ const blogSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    content: {
-        type: [contentSchema],
-        required: false,
-    },
-}, {
-    timestamps: true, // Automatically add createdAt and updatedAt
-});
+}, { timestamps: true });
 // Create and export the model
-exports.BlogModel = (0, mongoose_1.model)('Blog', blogSchema);
+exports.BlogModel = (0, mongoose_1.model)('Blog', BlogSchema);

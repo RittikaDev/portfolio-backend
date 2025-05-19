@@ -14,7 +14,12 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)({
-    origin: 'https://rittikadev.vercel.app',
+    origin: [
+        'https://rittikadev.vercel.app',
+        'https://portfolio-dashboard-six-lime.vercel.app',
+        'http://localhost:3000',
+        'http://localhost:3001',
+    ],
     credentials: true,
 }));
 // ROUTES

@@ -14,9 +14,19 @@ A Node-Express application to manage the portfolio. The application has features
 - Add new blog with details such as title, brief, cover, slug, publishedDate, readTime
 - Update, read and delete blogs
 
-### Message Read:
+### Message Management:
 
-- Reads and send messages
+- Receive and read messages from the contact form
+
+### Experience Management
+
+- Add professional experiences with fields like title, company, location, period, and descriptions
+- Update, retrieve, and delete experiences
+
+### Skill Management
+
+- Add technical or soft skills with fields like title and proficiency level
+- Update, retrieve, and delete skills
 
 ## Getting Started
 
@@ -147,7 +157,7 @@ API Documentation
 
 #### Blog Management
 
-- Create an Blog:
+- Create a Blog:
   - POST /api/blog
 - Get All Blog:
   - GET /api/blog
@@ -164,6 +174,33 @@ API Documentation
   - POST /api/contact
 - Get All Blog:
   - GET /api/contact
+
+#### Experience Management
+
+- POST /api/experience
+  - Request Body: {
+    "title": "Software Engineer",
+    "company": "Tech Corp",
+    "location": "Remote",
+    "startDate": "2021-01-01",
+    "endDate": "2023-05-01",
+    "description": [
+    "Worked on frontend development",
+    "Led a team of 4 engineers"
+    ]
+    }
+- GET /api/experience
+- GET /api/experience/:experienceId
+- PUT /api/experience/:experienceId
+- DELETE /api/experience/:experienceId
+
+#### Skill Management
+
+- POST /api/skill
+- GET /api/skill
+- GET /api/skill/:skillId
+- PUT /api/skill/:skillId
+- DELETE /api/skill/:skillId
 
 ## Project Structure
 
@@ -195,6 +232,22 @@ car-store-B4A2V3/
 │   │   │   │   ├── contact.service.ts
 │   │   │   │   ├── contact.interface.ts
 │   │   │   │   └── contact.validation.ts
+│   │   │   │
+│   │   │   ├── experience/
+│   │   │   │   ├── experience.controllers.ts
+│   │   │   │   ├── experience.model.ts
+│   │   │   │   ├── experience.route.ts
+│   │   │   │   ├── experience.service.ts
+│   │   │   │   ├── experience.interface.ts
+│   │   │   │   └── experience.validation.ts
+│   │   │   │
+│   │   │   ├── skill/
+│   │   │   │   ├── skill.controllers.ts
+│   │   │   │   ├── skill.model.ts
+│   │   │   │   ├── skill.route.ts
+│   │   │   │   ├── skill.service.ts
+│   │   │   │   ├── skill.interface.ts
+│   │   │   │   └── skill.validation.ts
 │   │   ├─── config/
 │   │       └── index.ts
 │   ├── app.ts

@@ -55,8 +55,9 @@ const signInUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     });
 }));
 const getCurrentUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    const user = yield auth_services_1.AuthService.getCurrentUser(req.body);
+    var _a;
+    const userEmail = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userEmail;
+    const user = yield auth_services_1.AuthService.getCurrentUser({ email: userEmail });
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_codes_1.default.OK,
@@ -75,9 +76,24 @@ const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
+const logoutUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.clearCookie('refreshToken', {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+    });
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_codes_1.default.OK,
+        success: true,
+        message: 'Logged out successfully!',
+        data: null,
+    });
+}));
 exports.AuthControllers = {
     createUser,
     signInUser,
     getCurrentUser,
     refreshToken,
+    logoutUser,
 };

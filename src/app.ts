@@ -17,6 +17,7 @@ app.use(
   cors({
     origin: [
       'https://rittikadev.vercel.app',
+      'https://portfolio-dashboard-six-lime.vercel.app',
       'http://localhost:3000',
       'http://localhost:3001',
     ],

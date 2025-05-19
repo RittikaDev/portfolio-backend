@@ -40,9 +40,8 @@ const createUserIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function
         const userData = payload;
         userData.password = payload.password || config_1.default.default_password;
         const newUser = yield user_model_1.User.create(userData);
-        if (!newUser) {
+        if (!newUser)
             throw new AppError_1.default(http_status_codes_1.default.BAD_REQUEST, 'Failed to create a new user');
-        }
         return newUser;
     }
     catch (err) {
@@ -58,8 +57,6 @@ const userSignIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* 
         throw new AppError_1.default(http_status_codes_1.default.BAD_REQUEST, 'Please provide a password');
     if (!(yield user_model_1.User.isPasswordMatched(payload.password, user === null || user === void 0 ? void 0 : user.password)))
         throw new AppError_1.default(http_status_codes_1.default.UNAUTHORIZED, 'Invalid credentials');
-    if (user.isBlocked)
-        throw new AppError_1.default(http_status_codes_1.default.FORBIDDEN, 'Your account is blocked, you are not allowed to login');
     const jwtPayload = {
         userEmail: user.email,
         role: user.role,
@@ -87,9 +84,8 @@ const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
         throw new AppError_1.default(http_status_codes_1.default.NOT_FOUND, 'user is not register');
     if (user.passwordChangedAt &&
-        user_model_1.User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat)) {
+        user_model_1.User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat))
         throw new AppError_1.default(http_status_codes_1.default.UNAUTHORIZED, 'You are not authorized !');
-    }
     const jwtPayload = {
         userEmail: user.email,
         role: user.role,

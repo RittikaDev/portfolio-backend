@@ -5,7 +5,6 @@ const zod_1 = require("zod");
 // DEFINING THE TUser SCHEMA WITH CUSTOM ERROR MESSAGE
 const CreateUserValidationSchema = zod_1.z.object({
     body: zod_1.z.object({
-        name: zod_1.z.string().min(1, { message: 'Name is required' }),
         email: zod_1.z
             .string()
             .email({ message: 'Invalid email address' })
@@ -14,16 +13,10 @@ const CreateUserValidationSchema = zod_1.z.object({
             .string()
             .min(6, { message: 'Password must be at least 6 characters long' })
             .nonempty({ message: 'Password is required' }),
-        phone: zod_1.z.string().optional(),
-        address: zod_1.z.string().optional(),
-        city: zod_1.z.string().optional(),
-        role: zod_1.z.enum(['admin', 'user']).optional().default('user'),
-        isBlocked: zod_1.z.boolean().optional().default(false),
     }),
 });
 const UpdateUserValidationSchema = zod_1.z.object({
     body: zod_1.z.object({
-        name: zod_1.z.string().min(1, { message: 'Name is required' }).optional(),
         email: zod_1.z
             .string()
             .email({ message: 'Invalid email address' })
@@ -34,11 +27,6 @@ const UpdateUserValidationSchema = zod_1.z.object({
             .min(6, { message: 'Password must be at least 6 characters long' })
             .nonempty({ message: 'Password is required' })
             .optional(),
-        phone: zod_1.z.string().optional().optional(),
-        address: zod_1.z.string().optional().optional(),
-        city: zod_1.z.string().optional().optional(),
-        role: zod_1.z.enum(['admin', 'user']).optional().default('user'),
-        isBlocked: zod_1.z.boolean().optional().default(false).optional(),
     }),
 });
 const ManageStatusValidationSchema = zod_1.z.object({
