@@ -17,7 +17,6 @@ const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const auth_services_1 = require("./auth.services");
-const config_1 = __importDefault(require("../../config"));
 const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userData = req.body;
     const user = yield auth_services_1.AuthService.createUserIntoDB(userData);
@@ -40,7 +39,7 @@ const signInUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     const { refreshToken, accessToken } = result;
     console.log(result);
     res.cookie('refreshToken', refreshToken, {
-        secure: config_1.default.NODE_ENV === 'production',
+        secure: true,
         httpOnly: true,
         sameSite: 'none',
         maxAge: 1000 * 60 * 60 * 24 * 365,

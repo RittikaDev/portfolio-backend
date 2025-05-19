@@ -33,7 +33,7 @@ const signInUser = catchAsync(async (req, res) => {
   console.log(result);
 
   res.cookie('refreshToken', refreshToken, {
-    secure: config.NODE_ENV === 'production',
+    secure: true,
     httpOnly: true,
     sameSite: 'none',
     maxAge: 1000 * 60 * 60 * 24 * 365,
